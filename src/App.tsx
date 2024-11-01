@@ -1,26 +1,24 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import MyComponent from './components/Hero/MyComponent'; 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Menu from './components/Hero/Menu';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <><div className="App">
+      <MyComponent /> {/* Changed from Hero to MyComponent */}
+    </div><Router>
+        <Routes>
+          <Route path="/" element={<MyComponent />} />     {/* Default HomePage */}
+          <Route path="/menu" element={<Menu onNavigate={function (route: string): void {
+            throw new Error('Function not implemented.');
+          } } />} /> {/* Navigates to MenuPage */}
+        </Routes>
+      </Router></>
   );
 }
+
 
 export default App;
